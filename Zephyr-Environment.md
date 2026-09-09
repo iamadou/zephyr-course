@@ -3,7 +3,7 @@
 
 
 
-<div style="text-align: right">
+<div style="text-align: justify">
   
 The main goal of this document is to explain what is done during this practical Lab with the \[QEMU Emulation for RISCV32E](https://docs.zephyrproject.org/latest/boards/qemu/riscv32e/doc/index.html). My environment is Windows 11 host, hence, I couldn't use 
 
