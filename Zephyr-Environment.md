@@ -4,6 +4,7 @@
 
 
 <div style="text-align: right">
+  
 The main goal of this document is to explain what is done during this practical Lab with the \[QEMU Emulation for RISCV32E](https://docs.zephyrproject.org/latest/boards/qemu/riscv32e/doc/index.html). My environment is Windows 11 host, hence, I couldn't use 
 
 the \[Native simulator - native\_sim](https://docs.zephyrproject.org/latest/boards/native/native\_sim/doc/index.html) because Windows isn't 
