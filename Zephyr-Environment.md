@@ -13,8 +13,6 @@ POSIX architecture based board.
 
 </div>
 
-<br
-
 <br>
 
 
