@@ -6,7 +6,7 @@ manifest:
       url: https://github.com/zephyrproject-rtos/zephyr
       revision: v4.2.0
       import:
-        name-allowlist:
+        name-allowlist:         
           - cmsis_6
           - hal_nxp
           - hal_stm32
