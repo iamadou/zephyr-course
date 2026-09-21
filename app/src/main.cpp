@@ -8,7 +8,13 @@
 
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED_NODE, gpios);
 
-LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
+#ifdef CONFIG_ENABLE_LED_DEBUGGING
+    LOG_MODULE_REGISTER(led, LOG_LEVEL_DBG);
+#else
+    LOG_MODULE_REGISTER(led, LOG_LEVEL_INF);
+#endif
+
+// LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
 int main(void)
 {
@@ -23,7 +29,7 @@ int main(void)
 
         led_state = !led_state;
         LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
-        k_msleep(CONFIG_BLINK_SLEEP_TIME_MS);
+        k_msleep(CONFIG_LED_BLINK_SLEEP_TIME_1S);
     }
     return 0;
 }
