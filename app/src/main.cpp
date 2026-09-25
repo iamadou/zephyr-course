@@ -7,34 +7,34 @@
 //#define LED_NODE DT_ALIAS(led0)
 //#define LED_NODE DT_NODELABEL(red_led)
 //#define LED_NODE DT_PATH(leds, led_2)
-#define LED_NODE DT_ALIAS(warning_led)
+#define LED_NODE DT_ALIAS(app_led)
 
 
 
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED_NODE, gpios);
 
-#ifdef CONFIG_ENABLE_LED_DEBUGGING
-    LOG_MODULE_REGISTER(led, LOG_LEVEL_DBG);
-#else
-    LOG_MODULE_REGISTER(led, LOG_LEVEL_INF);
-#endif
-
-// LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
+LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
 int main(void)
 {
     bool led_state = true;
 
-    if (!gpio_is_ready_dt(&led)) return 0;
+    /* Verify that the device is ready to be used */
+    if (!gpio_is_ready_dt(&led)) {
+        return 0;
+    } 
 
-    if (gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE) < 0) return 0;
+     /* Configure the GPIO pin as an output active */
+    if (gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE) < 0) {
+        return 0;
+    } 
 
     while (1) {
         if (gpio_pin_toggle_dt(&led) < 0) return 0;
 
         led_state = !led_state;
         LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
-        k_msleep(CONFIG_LED_BLINK_SLEEP_TIME_1S);
+        k_msleep(CONFIG_APP_HEARTBEAT_PERIOD_MS);
     }
     return 0;
 }

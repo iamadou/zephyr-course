@@ -1,60 +1,10 @@
-menuconfig LED_SUBSYSTEM
-    bool "LED Subsystem"
-    default y
-    help
-       Enable support for LED.
-
-if LED_SUBSYSTEM
-
-choice
-    prompt "LED blink sleep time"
-    default LED_BLINK_SLEEP_TIME_1S
-    help 
-       Select the default led blink sleep time 1s
-
-config LED_BLINK_SLEEP_TIME_200MS
-    bool "200ms (fast)"
-
-config LED_BLINK_SLEEP_TIME_1S
-    bool "1s (medium)"
-
-config LED_BLINK_SLEEP_TIME_2S
-    bool "2s (slow)"
-
-endchoice # Endchoice block
-
-menuconfig ADVANCED_LED
-    bool "Advanced LED settings"
-    default n
-    help 
-       Enable advanced LED settings such as brightness and fade duration.
-       
-
-if ADVANCED_LED
-
-config LED_BRIGHTNESS
-    int "Led brightness level (0-100)"
-    range 0 100
-    default 100
-
-config LED_FADE_DURATION
-    int "Led fade duration (ms)"
+# Define the custom heartbeat period option
+config APP_HEARTBEAT_PERIOD_MS
+    int "App Heartbeat Period in ms (100-2000)"
+    range 100 2000
     default 500
+    help
+      Sets the sleep duration for the application heartbeat LED toggle.
 
-menu "Expert settings"
-
-config ENABLE_LED_DEBUGGING
-    bool "Enable LED debugging"
-    default n
-
-config CUSTOM_BLINK_PATTERN
-    bool "Custom blink pattern"
-    default n
-
-endmenu
-
-endif # ADVANCED_LED
-
-endif # LED_SUBSYSTEM
-
+# Source the main Zephyr Kconfig file
 source "Kconfig.zephyr"
