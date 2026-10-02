@@ -4,10 +4,10 @@
 
 
 /* The devicetree node identifier for the "led0" alias. */
-#define LED_NODE DT_ALIAS(led2)
+//#define LED_NODE DT_ALIAS(led2)
 //#define LED_NODE DT_NODELABEL(red_led)
 //#define LED_NODE DT_PATH(leds, led_2)
-//#define LED_NODE DT_ALIAS(app_led)
+#define LED_NODE DT_ALIAS(app_led)
 
 
 
