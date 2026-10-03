@@ -1,0 +1,6 @@
+board:
+  name: l5t2_board
+  full_name: L5T2 Board
+  vendor: iomic-iam
+  socs:
+  - name: mcxa276
