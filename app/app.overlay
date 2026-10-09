@@ -1,6 +1,7 @@
 /{
-    our_driver0: our_driver0 {
-        compatible = "our,driver";
+    our_sensor_driver0: our_sensor_driver0 {
+        compatible = "our,sensor-driver";
+        led-gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
         status = "okay";
     };
 };

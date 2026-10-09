@@ -8,4 +8,4 @@ config APP_HEARTBEAT_PERIOD_MS
 
 # Source the main Zephyr Kconfig file
 source "Kconfig.zephyr"
-rsource "drivers/our_driver/Kconfig"
+rsource "drivers/our_sensor_driver/Kconfig"

@@ -1,0 +1,13 @@
+description: Sensor driver for turning switching LED via GPIO
+compatible: "our,sensor-driver"
+include: sensor-device.yaml
+
+properties:
+  led-gpios:
+    type: phandle-array
+    required: true
+    description: |
+      This property specifies the GPIO pin that will be used to control the LED. 
+      It should be a valid GPIO pin defined in the device tree. The driver will 
+      use this pin to turn the LED on and off based on sensor readings or other 
+      conditions.
