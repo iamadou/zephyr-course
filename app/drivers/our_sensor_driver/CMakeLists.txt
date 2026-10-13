@@ -5,4 +5,5 @@
 
 if (CONFIG_OUR_SENSOR_DRIVER)
     target_sources(app PRIVATE our_sensor_driver.c)
+    zephyr_include_directories(.)
 endif()

@@ -7,6 +7,8 @@
 #include <zephyr/drivers/sensor.h>
 #include <zephyr/logging/log.h>
 
+#include "our_sensor_driver.h" /* Include the header file that extends the sensor driver API */
+
 
 LOG_MODULE_REGISTER(our_sensor_driver, LOG_LEVEL_INF);
 
@@ -20,10 +22,21 @@ struct our_sensor_driver_config {
 struct our_sensor_driver_data {
     /* Add any runtime data you need here */
     int32_t led_state;
+    int32_t dynamic_calibration;  /* Calibration value for the sensor */
 };
 
-/* sensor_sample_fetch : Turn on the LED */
+/* Implementation of the calibration setting function */
 
+static int our_sensor_driver_impl_set_calibration(const struct device *dev, int32_t called_value) {
+    struct our_sensor_driver_data *data = dev->data;
+
+    data->dynamic_calibration = called_value;
+
+    LOG_INF("Calibration value set to: %d", called_value);
+    return 0;
+}
+
+/* sensor_sample_fetch : Turn on the LED */
 static int our_sensor_driver_sample_fetch(const struct device *dev, enum sensor_channel chan) {
     const struct our_sensor_driver_config *config = dev->config;
     struct our_sensor_driver_data *data = dev->data;
@@ -73,9 +86,17 @@ static const struct sensor_driver_api our_sensor_driver_api = {
     .channel_get = our_sensor_driver_channel_get,
 };
 
+/*  Extended API Configuration */
+
+static const struct our_sensor_driver_extended_api_config our_sensor_driver_extended_api = {
+    .base_api = our_sensor_driver_api,
+    .set_calibration = our_sensor_driver_impl_set_calibration,
+};
+
 /*  Driver Initialization Function */
 static int our_sensor_driver_init(const struct device *dev) {
     const struct our_sensor_driver_config *config = dev->config;
+    struct our_sensor_driver_data *data = dev->data;
 
     if(!gpio_is_ready_dt(&config->led_gpio)) {
         LOG_ERR("LED GPIO device is not ready");
@@ -88,6 +109,10 @@ static int our_sensor_driver_init(const struct device *dev) {
         return ret;
     }
 
+    /* Initialize the LED state to OFF */
+    data->led_state = 0;
+    /* Initialize calibration value to 0 */
+    data->dynamic_calibration = 15;  
     LOG_INF("Our Sensor Driver initialized successfully");
     return 0;
 }
@@ -105,6 +130,6 @@ static int our_sensor_driver_init(const struct device *dev) {
                           &our_sensor_driver_config_##inst,                              \
                           POST_KERNEL,                                                   \
                           CONFIG_KERNEL_INIT_PRIORITY_DEVICE,                            \
-                          &our_sensor_driver_api);
+                          &our_sensor_driver_extended_api); 
 
 DT_INST_FOREACH_STATUS_OKAY(OUR_SENSOR_DRIVER_DEFINE)
