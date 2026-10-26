@@ -5,4 +5,7 @@
 
 if (CONFIG_OUR_SENSOR_DRIVER)
     target_sources(app PRIVATE our_sensor_driver.c)
+    if(CONFIG_SHELL)
+        target_sources(app PRIVATE sensor_root_shell.c)
+    endif()
 endif()
