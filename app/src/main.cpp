@@ -27,7 +27,7 @@ int main(void)
 {
     const struct device *sensor_dev = DEVICE_DT_GET(DT_NODELABEL(our_sensor_driver0));
     struct sensor_value val;
-    int ret;
+    int ret = 0;
 
     /* Verify that the sensor device is ready to be used */
     if(!device_is_ready(sensor_dev)) {
