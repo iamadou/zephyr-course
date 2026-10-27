@@ -7,6 +7,8 @@
 #include <zephyr/drivers/sensor.h>
 #include <zephyr/logging/log.h>
 
+#include <inttypes.h>
+
 #include "our_sensor_driver.h" /* Include the header file that extends the sensor driver API */
 
 
@@ -32,7 +34,7 @@ static int our_sensor_driver_impl_set_calibration(const struct device *dev, int3
 
     data->dynamic_calibration = called_value;
 
-    LOG_INF("Calibration value set to: %d", called_value);
+    LOG_INF("Calibration value set to:  %"PRId32" ", called_value);
     return 0;
 }
 
