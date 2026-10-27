@@ -1,11 +1,7 @@
 /{
     our_sensor_driver0: our_sensor_driver0 {
         compatible = "our,sensor-driver";
-<<<<<<< HEAD
         led-gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
-=======
-        led-gpios = <&gpio4 18 GPIO_ACTIVE_LOW>; 
->>>>>>> myshellapiextension
         status = "okay";
     };
 };
