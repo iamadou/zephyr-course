@@ -61,13 +61,13 @@ static int our_sensor_driver_shell_info(const struct shell *shell, size_t argc, 
 }
 
 /* Define the shell commands for our sensor driver */
-SHELL_STATIC_SUBCMD_SET_CREATE(our_sensor_driver_shell_cmds,
+SHELL_STATIC_SUBCMD_SET_CREATE(our_sensor_driver_subcmds,
     SHELL_CMD(fetch, NULL, "Fetch sensor data", our_sensor_driver_shell_fetch),
     SHELL_CMD(read, NULL, "Get sensor value", our_sensor_driver_shell_read),
     SHELL_CMD(info, NULL, "Get sensor driver information", our_sensor_driver_shell_info),
     SHELL_SUBCMD_SET_END
 );
 
-SHELL_CMD_REGISTER(sensorroot, &our_sensor_driver_shell_cmds, "Our Sensor Driver root Shell Commands", NULL);
+SHELL_CMD_REGISTER(sensor_root, &our_sensor_driver_subcmds, "Our sensor driver root Shell Commands - Iomico l7 task One", NULL);
 
 
