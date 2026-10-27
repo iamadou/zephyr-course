@@ -3,6 +3,12 @@
 #include <zephyr/device.h>
 #include <zephyr/drivers/sensor.h>
 #include <zephyr/logging/log.h>
+#include <zephyr/sys/printk.h>
+#include <zephyr/random/random.h>
+
+extern "C" {
+    #include "our_sensor_driver.h"  
+}
 
 
 
@@ -28,8 +34,21 @@ int main(void)
         LOG_ERR("Sensor device not ready");
         return -ENODEV;
     }
-
     LOG_INF("Sensor device is ready");
+
+    LOG_INF("Setting calibration value to random generated value");
+
+    /* Set a random calibration value */
+    int32_t random_calibration_value = sys_rand32_get(); // Random value
+    ret = our_sensor_driver_set_calibration(sensor_dev, random_calibration_value);
+    if(ret < 0) {
+        LOG_ERR("Failed to set calibration value: %d", ret);
+        return ret;
+    }else {
+        LOG_INF("Calibration value set to: %d", random_calibration_value);
+    }
+
+    LOG_INF("Starting the main loop to toggle the LED state");
     while (1) {
 
         /* 3. Fetch: Turn on the LED */
