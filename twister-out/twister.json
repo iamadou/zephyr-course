@@ -4,7 +4,7 @@
         "zephyr_version":"v4.2.0",
         "toolchain":"zephyr",
         "commit_date":"2025-07-18T18:17:09-05:00",
-        "run_date":"2026-10-30T21:38:16+00:00",
+        "run_date":"2026-10-30T22:11:28+00:00",
         "options":{
             "help":null,
             "zephyr_base":null,
@@ -14,6 +14,12 @@
                 "tests/ring_buf"
             ],
             "clobber_output":true,
+            "enable_coverage":true,
+            "coverage":true,
+            "coverage_basedir":"app/modules/ring_buf",
+            "coverage_platform":[
+                "native_sim"
+            ],
             "platform":[
                 "native_sim"
             ]
@@ -25,41 +31,16 @@
             "arch":"posix",
             "platform":"native_sim/native",
             "path":"../../zephyr-course/tests/ring_buf",
-            "run_id":"78734e844ebabdc4cf378f63aea0ec47",
+            "run_id":"c8431acf8ee65fbd6d81f3a75b8e2796",
             "runnable":true,
             "retries":0,
             "toolchain":"host",
             "status":"passed",
             "execution_time":"0.11",
-            "build_time":"27.32",
+            "build_time":"34.61",
             "testcases":[
                 {
-                    "identifier":"homework.unit.ring_buf.ring_buf_boundaries.is_full_after_fill",
-                    "execution_time":"0.00",
-                    "status":"passed"
-                },
-                {
-                    "identifier":"homework.unit.ring_buf.ring_buf_boundaries.pop_null_returns_einval",
-                    "execution_time":"0.00",
-                    "status":"passed"
-                },
-                {
-                    "identifier":"homework.unit.ring_buf.ring_buf_boundaries.peek_does_not_consume",
-                    "execution_time":"0.00",
-                    "status":"passed"
-                },
-                {
-                    "identifier":"homework.unit.ring_buf.ring_buf_push_pop.push_full_returns_enospc",
-                    "execution_time":"0.00",
-                    "status":"passed"
-                },
-                {
-                    "identifier":"homework.unit.ring_buf.ring_buf_push_pop.fifo_order",
-                    "execution_time":"0.00",
-                    "status":"passed"
-                },
-                {
-                    "identifier":"homework.unit.ring_buf.ring_buf_push_pop.single_push_pop",
+                    "identifier":"homework.unit.ring_buf.ring_buf_init.fresh_state",
                     "execution_time":"0.00",
                     "status":"passed"
                 },
@@ -69,7 +50,32 @@
                     "status":"passed"
                 },
                 {
-                    "identifier":"homework.unit.ring_buf.ring_buf_init.fresh_state",
+                    "identifier":"homework.unit.ring_buf.ring_buf_push_pop.single_push_pop",
+                    "execution_time":"0.00",
+                    "status":"passed"
+                },
+                {
+                    "identifier":"homework.unit.ring_buf.ring_buf_push_pop.fifo_order",
+                    "execution_time":"0.00",
+                    "status":"passed"
+                },
+                {
+                    "identifier":"homework.unit.ring_buf.ring_buf_push_pop.push_full_returns_enospc",
+                    "execution_time":"0.00",
+                    "status":"passed"
+                },
+                {
+                    "identifier":"homework.unit.ring_buf.ring_buf_boundaries.peek_does_not_consume",
+                    "execution_time":"0.00",
+                    "status":"passed"
+                },
+                {
+                    "identifier":"homework.unit.ring_buf.ring_buf_boundaries.pop_null_returns_einval",
+                    "execution_time":"0.00",
+                    "status":"passed"
+                },
+                {
+                    "identifier":"homework.unit.ring_buf.ring_buf_boundaries.is_full_after_fill",
                     "execution_time":"0.00",
                     "status":"passed"
                 }
